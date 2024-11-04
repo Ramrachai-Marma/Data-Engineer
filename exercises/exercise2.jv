@@ -1,0 +1,42 @@
+pipeline "Tree Data Pipeline" {
+    // Source Definition: Load data directly from the CSV URL
+    source csv_source from url("https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/stadt-neuss-herbstpflanzung-2023/exports/csv") {
+        schema {
+            id: text,
+            stadtteil: text,
+            baumart_deutsch: text,
+            // Define other columns as needed
+        }
+    }
+
+    // Transformation: Filter rows where "stadtteil" starts with "Vogelsang"
+    node vogelsang_filter from filter(csv_source) {
+        where: starts_with(stadtteil, "Vogelsang")
+    }
+
+    // Transformation: Extract latitude and longitude from "id" using regex
+    node geopoint_extraction from regex_extract(vogelsang_filter, id, pattern: "(\\d{1,3}\\.\\d+),\\s*(\\d{1,3}\\.\\d+)", output: ["geo_lat", "geo_lon"]) {
+        geo_lat: float,
+        geo_lon: float
+    }
+
+    // Transformation: Remove the "baumart_deutsch" column
+    node drop_columns from project(geopoint_extraction) {
+        keep: ["geo_lat", "geo_lon", "stadtteil"]
+    }
+
+    // Transformation: Filter out rows with null values in "geo_lat" or "geo_lon"
+    node drop_invalid_geopoints from filter(drop_columns) {
+        where: not_null(geo_lat) and not_null(geo_lon)
+    }
+
+    // Sink: Write data into a SQLite database
+    sink sqlite_sink from sqlite("trees.sqlite", table: "trees") {
+        input: drop_invalid_geopoints
+        schema {
+            geo_lat: float,
+            geo_lon: float,
+            stadtteil: text
+        }
+    }
+}
