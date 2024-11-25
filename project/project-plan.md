@@ -17,10 +17,10 @@ The project aims to analyze the impact of renewable energy production on CO₂ e
 * Data URL : https://api.worldbank.org/v2/en/indicator/EG.ELC.RNWX.KH?downloadformat=csv
 * Data Type: CSV
 
-### Datasource2: World Bank Co2 emission data
-*Metadata Url: https://data.worldbank.org/indicator/EN.GHG.CO2.PI.MT.CE.AR5?end=2022&start=1970
+### Datasource2: Our World in Data Co2 emission data
+*Metadata Url: https://ourworldindata.org/grapher/per-capita-co2-region
 
-*Data Url:https://api.worldbank.org/v2/en/indicator/EN.GHG.CO2.PI.MT.CE.AR5?downloadformat=csv
+*Data Url:https://ourworldindata.org/grapher/per-capita-co2-region.zip
 
 *Data type: CSV
 
