@@ -2,7 +2,7 @@
 
 ## Title 
 <!-- Give your project a short title. -->
-Renewable energy consumption and Co2 emission decreases.
+Renewable energy consumption and Co2 emission from power Industry.
 
 ## Main Question
 <!-- Think about one main question you want to answer based on the data. -->
@@ -17,10 +17,10 @@ The project aims to analyze the impact of renewable energy consumption on CO₂ 
 * Data URL :https://api.worldbank.org/v2/en/indicator/EG.FEC.RNEW.ZS?downloadformat=csv
 * Data Type: CSV
 
-### Datasource2: Our World in Data Co2 emission data
-*Metadata Url: https://ourworldindata.org/grapher/per-capita-co2-region
+### Datasource2:  World Bank Data Co2 emission data
+*Metadata Url: https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS
 
-*Data Url:https://ourworldindata.org/grapher/per-capita-co2-region.zip
+*Data Url:https://api.worldbank.org/v2/en/indicator/EN.GHG.CO2.PI.MT.CE.AR5?downloadformat=csvcd
 
 *Data type: CSV
 
