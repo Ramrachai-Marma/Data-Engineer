@@ -10,7 +10,7 @@ OUTPUT_FILES = [
 ]
 
 # Function to run the ETL pipeline and capture its output
-def execute_pipeline(script_name='pipeline.py'):
+def execute_pipeline(script_name='./project/pipeline.py'):
     """
     Executes a Python script as a subprocess to run the ETL pipeline.
     Returns True if the script runs successfully; otherwise, False.
