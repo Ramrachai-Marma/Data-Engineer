@@ -1,9 +1,12 @@
 .DS_Store
-**/data/*
 data/
 !/data/.gitkeep
+
 # Ignore all .sqlite files except specific ones
-*.sqlite
+#*.sqlite
 !exercises/airports.sqlite
 !exercises/trees.sqlite
 
+# Ignore data directories under project
+/project/data/
+!/project/data/processed/electric_vehicle_data.db
