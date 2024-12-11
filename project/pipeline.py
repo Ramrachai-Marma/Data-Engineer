@@ -7,7 +7,7 @@ import pandas as pd
 import sqlite3
 from io import BytesIO
 
-data_directory = r"C:\Users\ramra\MADE_LAB\made-Ramrachai-Marma\project\data\processed"
+data_directory = r"./data/processed"
 
 
 if not os.path.exists(data_directory):
