@@ -1,4 +1,5 @@
 #!/bin/bash
-python "$(dirname "$0")/pipeline.py"
+
+python3 "$(dirname "$0")/pipeline.py"
 
 
