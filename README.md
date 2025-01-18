@@ -14,16 +14,22 @@ World in Data, which shows the Co2 emissions from Latin American countries.made-
 
 
 # Data Sources
-
-| Data Source 1                        | Data Source 2                         |
-|--------------------------------------|---------------------------------------|
-| **Title**                            | Renewable energy consumption          | World Bank CO2 emissions             |
-| **Metadata URL**                     | [Renewable Energy](https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS) | [World Bank Data CO2 emission](https://data.worldbank.org) |
-| **Data URL**                         | [Renewable Energy Raw Data](https://api.worldbank.org/v2/en/indicator/EG.FEC.RNEW.ZS?downloadformat=csv) | [World Bank CO2 emission Raw Data](https://api.worldbank.org/v2/en/indicator/EN.GHG.CO2.PI.MT.CE.AR5?downloadformat=csv) |
-| **Data Type**                        | CSV Directory                         | CSV                                   |
-| **License**                          | [CC-BY-4.0](https://ember-climate.org/creative-commons/) | [CC-BY-4.0](https://datacatalog.worldbank.org/public-licenses#cc-by) |
-| **Description**                      | This dataset from the World Bank tracks the share of renewable energy in total final energy consumption, presented as a percentage. It highlights global and regional trends in transitioning to renewable energy sources. Includes country-level data on renewable energy consumption as a percentage of total energy use from 1960 to recent years. | Co2 emission data, this dataset provides per capita CO2 emissions by the Latin American region, showcasing historical trends in carbon dioxide emissions across different geographical areas. It helps in understanding regional contributions to global emissions and monitoring progress toward climate goals. Regional data on CO2 emissions are measured in metric tons per capita over multiple decades. |
-
+| | Data source 1 | Data source 2 |
+| ----------- | ----- | ----------- |
+| Title | European Electricity | World GDP |
+| Metadata URL | [Renewable Energy](https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS) | [CO2 emission Data](https://data.worldbank.org/indicator/EN.GHG.CO2.PI.MT.CE.AR5) |
+| Data URL | [Renewable energy Raw Data](https://api.worldbank.org/v2/en/indicator/EG.FEC.RNEW.ZS?downloadformat=c
+sv)  [CO2 emission Raw Data ](https://api.worldbank.org/v2/en/indicator/EN.GHG.CO2.PI.MT.CE.AR5?downloadformat=csv) |
+| Data Type | CSV Directory | CSV |
+| License | CC-BY-4.0 [License](https://ember-climate.org/creative-commons/) | CC-BY-4.0 [License](https://datacatalog.worldbank.org/public-licenses#cc-by) |
+| Description | This dataset from the World Bank tracks the share of renewable energy in total
+final energy consumption, presented as a percentage. It highlights global and regional trends
+in transitioning to renewable energy sources. Includes country-level data on renewable
+energy consumption as a percentage of total energy use from 1960 to recent years.| This dataset provides per capita CO₂ emissions by Latin Americans region,
+showcasing historical trends in carbon dioxide emissions across different geographical areas.
+It helps in understanding regional contributions to global emissions and monitoring progress
+toward climate goals. Regional data on CO₂ emissions measured in metric tons per capita over
+multiple decades.
 
 
 ## Work Packages
