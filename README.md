@@ -22,6 +22,7 @@ World in Data, which shows the Co2 emissions from Latin American countries.made-
 sv)  [CO2 emission Raw Data ](https://api.worldbank.org/v2/en/indicator/EN.GHG.CO2.PI.MT.CE.AR5?downloadformat=csv) |
 | Data Type | CSV Directory | CSV |
 | License | CC-BY-4.0 [License](https://ember-climate.org/creative-commons/) | CC-BY-4.0 [License](https://datacatalog.worldbank.org/public-licenses#cc-by) |
+
 | Description | This dataset from the World Bank tracks the share of renewable energy in total
 final energy consumption, presented as a percentage. It highlights global and regional trends
 in transitioning to renewable energy sources. Includes country-level data on renewable
@@ -29,7 +30,7 @@ energy consumption as a percentage of total energy use from 1960 to recent years
 showcasing historical trends in carbon dioxide emissions across different geographical areas.
 It helps in understanding regional contributions to global emissions and monitoring progress
 toward climate goals. Regional data on CO₂ emissions measured in metric tons per capita over
-multiple decades.
+multiple decades.|
 
 
 ## Work Packages
