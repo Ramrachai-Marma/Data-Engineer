@@ -8,10 +8,7 @@
 </figure>
 
 ## Project Overview
-The project seeks to examine the influence of renewable energy consumption on CO₂ emissions within the electricity sector. Amid growing global concerns about climate change, renewable energy sources such as solar, wind, and hydro are increasingly being promoted as sustainable alternatives to fossil fuels. This study aims to evaluate whether the adoption of renewable energy results in significant reductions in CO₂ emissions and to analyze the factors that shape this relationship.To answer the question,("Does consumption of renewable energy sources decreases the Co2 emission?") two data sources have been selected for this project: The world Bank,
-which shows yearly information on Latin Americans renewable energy consumption, and Our
-World in Data, which shows the Co2 emissions from Latin American countries.made-Ramrachai
-
+The project seeks to examine the influence of renewable energy consumption on CO₂ emissions within the electricity sector. Amid growing global concerns about climate change, renewable energy sources such as solar, wind, and hydro are increasingly being promoted as sustainable alternatives to fossil fuels. This study aims to evaluate whether the adoption of renewable energy results in significant reductions in CO₂ emissions and to analyze the factors that shape this relationship.
 
 # Data Sources
 | | Data source 1 | Data source 2 |
@@ -23,14 +20,19 @@ sv)  [CO2 emission Raw Data ](https://api.worldbank.org/v2/en/indicator/EN.GHG.C
 | Data Type | CSV Directory | CSV |
 | License | CC-BY-4.0 [License](https://ember-climate.org/creative-commons/) | CC-BY-4.0 [License](https://datacatalog.worldbank.org/public-licenses#cc-by) |
 
-| Description | This dataset from the World Bank tracks the share of renewable energy in total
+# Description 
+
+This dataset from the World Bank tracks the share of renewable energy in total
 final energy consumption, presented as a percentage. It highlights global and regional trends
 in transitioning to renewable energy sources. Includes country-level data on renewable
-energy consumption as a percentage of total energy use from 1960 to recent years.| This dataset provides per capita CO₂ emissions by Latin Americans region,
+energy consumption as a percentage of total energy use from 1960 to recent years. Co2 dataset provides per capita CO₂ emissions by Latin Americans region,
 showcasing historical trends in carbon dioxide emissions across different geographical areas.
 It helps in understanding regional contributions to global emissions and monitoring progress
 toward climate goals. Regional data on CO₂ emissions measured in metric tons per capita over
-multiple decades.|
+multiple decades.|To answer the question,("Does consumption of renewable energy sources decreases the Co2 emission?") two data sources have been selected for this project: The world Bank,
+which shows yearly information on Latin Americans renewable energy consumption, and Our
+World in Data, which shows the Co2 emissions from Latin American countries.
+
 
 
 ## Work Packages
