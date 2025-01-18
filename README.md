@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Analyzing the Relationship between Renewable Energy Consumption,CO2 Emissions in North/South/Middle America
 
 > *This repository has been forked from the [jvalue-made-template](https://github.com/jvalue/made-template) repository.*
@@ -122,3 +123,8 @@ HAVE FUN! :smile:
 
 
 ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex1) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex2) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex3) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex4) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex5) 
+=======
+
+
+ 
+>>>>>>> 0c94c3f6c2af37d576cdcfc76d29967aca0b1448
