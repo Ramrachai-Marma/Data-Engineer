@@ -27,7 +27,7 @@ energy consumption as a percentage of total energy use from 1960 to recent years
 showcasing historical trends in carbon dioxide emissions across different geographical areas.
 It helps in understanding regional contributions to global emissions and monitoring progress
 toward climate goals. Regional data on CO₂ emissions measured in metric tons per capita over
-multiple decades.
+multiple decades.|
 
 
 ## Work Packages
@@ -122,7 +122,7 @@ Grading Exercise 1
 HAVE FUN! :smile:
 
 
-![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex1) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex2) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex3) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex4) ![](https://byob.yarr.is/Jovinjo/made-Ramrachai-Marma/score_ex5) 
+![](https://byob.yarr.is/Jovinjo/Ramrachai-Marma/made-Ramrachai-Marma/score_ex1) ![](https://byob.yarr.is/Jovinjo/Ramrachai-Marma/made-Ramrachai-Marma/score_ex2) ![](https://byob.yarr.is/Jovinjo/Ramrachai-Marma/made-Ramrachai-Marma/score_ex3) ![](https://byob.yarr.is/Jovinjo/Ramrachai-Marma/made-Ramrachai-Marma/score_ex4) ![](https://byob.yarr.is/Jovinjo/Ramrachai-Marma/made-Ramrachai-Marma/score_ex5) 
 =======
 
 
