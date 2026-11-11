@@ -1,4 +1,4 @@
-name: CI for Project
+name: Data Pipeline Tests
 
 on:
   push:
@@ -12,27 +12,21 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.8'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    - name: Install Dependencies
-      run: |
-        if [ -f ./project/requirements.txt ]; then pip install -r ./project/requirements.txt; fi
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r project/requirements.txt
 
-    - name: List Root Directory Files
-      run: ls -la
-
-    - name: List Project Directory Files
-      run: ls -la ./project
-
-    - name: Run Pipeline Script
-      run: bash ./project/pipeline.sh
-
-    - name: Run Test Script
-      run: bash ./project/tests.sh
+      - name: Run offline tests
+        run: bash project/tests.sh

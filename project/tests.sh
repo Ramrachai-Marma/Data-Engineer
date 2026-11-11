@@ -1,2 +1,4 @@
 #!/bin/bash
-python3 ./project/test.py
+set -euo pipefail
+
+python3 -m unittest discover -s project/tests -v

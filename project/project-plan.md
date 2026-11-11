@@ -1,32 +1,26 @@
-# Project Plan
+# Project Plan: Renewable Energy and CO2 Indicators
 
-## Title 
-<!-- Give your project a short title. -->
-Renewable energy consumption and Co2 emission from power Industry.
+## Research question
 
-## Main Question
-<!-- Think about one main question you want to answer based on the data. -->
-1.Does renewable energy sonsumption decreases the Co2 emission?  
+How do renewable-energy consumption and the selected CO2 indicator vary across the configured North American, Central American, and Caribbean countries and territories from 2015 through 2021?
 
-## Description
-The project aims to analyze the impact of renewable energy consumption on CO₂ emissions in the electricity sector. With global concerns about climate change, renewable energy consumptions from sources like solar, wind, and hydro are being promoted as sustainable alternatives to fossil fuels. This study will investigate whether consumption of renewables energy  leads to significant reductions in CO₂ emissions and assess the factors influencing this relationship.
-## Datasources: 
+The analysis is exploratory. Comparing these indicators can describe patterns and associations, but does not establish that renewable-energy consumption causes changes in emissions.
 
-### Datasource1: World Bank Renewable energy consumption
-* Metadata URL : https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS
-* Data URL :https://api.worldbank.org/v2/en/indicator/EG.FEC.RNEW.ZS?downloadformat=csv
-* Data Type: CSV
+## Data sources
 
-### Datasource2:  World Bank Data Co2 emission data
-*Metadata Url: https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS
+| Dataset | World Bank indicator | Metadata |
+|---|---|---|
+| Renewable energy consumption | `EG.FEC.RNEW.ZS` | <https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS> |
+| CO2 emissions | `EN.GHG.CO2.PI.MT.CE.AR5` | <https://data.worldbank.org/indicator/EN.GHG.CO2.PI.MT.CE.AR5> |
 
-*Data Url:https://api.worldbank.org/v2/en/indicator/EN.GHG.CO2.PI.MT.CE.AR5?downloadformat=csvcd
+The pipeline downloads the corresponding CSV archives through the World Bank API. It selects the countries and years configured in `pipeline.py`, reshapes observations into long form, and writes CSV and SQLite outputs.
 
-*Data type: CSV
+## Work plan
 
-## Work Packages
-
-<!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-
-1. Preparation: Define objectives ,stakeholders, and tools.
-
+1. Define the research question, scope, and data-quality checks.
+2. Download and inspect both indicator datasets.
+3. Filter the selected locations and study years; document missing observations.
+4. Produce cleaned CSV and SQLite outputs with an automated pipeline.
+5. Test transformations and output structure using offline unit tests.
+6. Analyze trends and limitations; avoid causal claims unsupported by the data.
+7. Publish the report with source attribution and reproducibility instructions.

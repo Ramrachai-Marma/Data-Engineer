@@ -1,108 +1,113 @@
-import os
+"""Run the ETL pipeline and validate its generated CSV and SQLite outputs."""
+
+import logging
+import sqlite3
 import subprocess
+import sys
+from pathlib import Path
+
 import pandas as pd
 
-# Define the expected output file paths
+PROJECT_DIR = Path(__file__).resolve().parents[1]
+DATA_DIR = PROJECT_DIR / "data" / "processed"
 OUTPUT_FILES = [
-    './data/processed/renewable_energy_consumption_cleaned.csv',
-    './data/processed/co2_emissions_cleaned.csv',
-    './data/processed/data_cleaned.db'
+    DATA_DIR / "renewable_energy_consumption_cleaned.csv",
+    DATA_DIR / "co2_emissions_cleaned.csv",
+    DATA_DIR / "data_cleaned.db",
 ]
+TABLES = {
+    "renewable_energy_consumption_data",
+    "co2_emissions_data",
+}
 
-# Function to run the ETL pipeline and capture its output
-def execute_pipeline(script_name='./project/pipeline.py'):
-    """
-    Executes a Python script as a subprocess to run the ETL pipeline.
-    Returns True if the script runs successfully; otherwise, False.
-    """
-    print("[INFO] Executing ETL pipeline...")
-    try:
-        result = subprocess.run(
-            ['python', script_name],
-            capture_output=True,
-            text=True
-        )
-        if result.returncode == 0:
-            print("[INFO] Pipeline executed successfully.")
-            print(result.stdout)
-            return True
-        else:
-            print("[ERROR] Pipeline execution failed.")
-            print(result.stderr)
-            return False
-    except FileNotFoundError:
-        print(f"[ERROR] Script {script_name} not found.")
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+logger = logging.getLogger(__name__)
+
+
+def execute_pipeline() -> bool:
+    """Run the ETL with the current Python interpreter."""
+    pipeline_path = PROJECT_DIR / "project" / "pipeline.py"
+    logger.info("Executing ETL pipeline.")
+    result = subprocess.run(
+        [sys.executable, str(pipeline_path)],
+        cwd=PROJECT_DIR,
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if result.stdout:
+        logger.info("%s", result.stdout.rstrip())
+    if result.returncode:
+        logger.error("Pipeline failed:\n%s", result.stderr.rstrip())
         return False
-    except Exception as e:
-        print(f"[ERROR] Unexpected error: {e}")
-        return False
-
-# Function to validate the existence and content of files
-def check_file_availability(file_list):
-    """
-    Validates that files in the provided list exist and are not empty.
-    Returns True if all files meet the criteria; otherwise, False.
-    """
-    print("[INFO] Validating file availability...")
-    missing_or_empty_files = [
-        f for f in file_list if not os.path.exists(f) or os.path.getsize(f) == 0
-    ]
-
-    if missing_or_empty_files:
-        print("[ERROR] The following files are missing or empty:")
-        for file in missing_or_empty_files:
-            print(f"  - {file}")
-        return False
-
-    print("[INFO] All files are present and non-empty:")
-    for file in file_list:
-        print(f"  - {file}")
     return True
-# Function to check for missing values in the cleaned data files
-def inspect_missing_values(file_paths):
-    """
-    Checks for missing values in CSV files and prints the results.
-    Returns True if no missing values are found; otherwise, False.
-    """
-    print("[INFO] Checking files for missing data...")
-    try:
-        for file in file_paths:
-            if file.endswith('.csv'):
-                data = pd.read_csv(file)
-                missing_values = data.isnull().sum().sum()
-                if missing_values > 0:
-                    print(f"[ERROR] Missing values found in file: {file}")
-                    return False
-        print("[INFO] No missing data in the inspected files.")
-        return True
-    except Exception as e:
-        print(f"[ERROR] Error during missing value inspection: {e}")
+
+
+def validate_output_files() -> bool:
+    """Ensure every expected output exists and contains data."""
+    invalid_files = [
+        path for path in OUTPUT_FILES if not path.is_file() or path.stat().st_size == 0
+    ]
+    if invalid_files:
+        logger.error("Missing or empty output files: %s", ", ".join(map(str, invalid_files)))
         return False
+    return True
 
-# Main function to run all tests sequentially
-def run_tests():
-    """
-    Executes the pipeline, validates file outputs, and inspects for missing data.
-    """
-    print("[INFO] Starting the test suite...")
-    
-    # Step 1: Run the ETL pipeline
+
+def validate_csv_files() -> bool:
+    """Ensure each output CSV has records and no missing values."""
+    for path in OUTPUT_FILES:
+        if path.suffix != ".csv":
+            continue
+        try:
+            data = pd.read_csv(path)
+        except (OSError, pd.errors.ParserError, UnicodeDecodeError) as error:
+            logger.error("Could not read %s: %s", path, error)
+            return False
+        if data.empty:
+            logger.error("CSV output contains no records: %s", path)
+            return False
+        if data.isna().any().any():
+            logger.error("Missing values found in %s", path)
+            return False
+    return True
+
+
+def validate_database() -> bool:
+    """Ensure the SQLite database contains both non-empty indicator tables."""
+    database_path = OUTPUT_FILES[-1]
+    try:
+        with sqlite3.connect(database_path) as connection:
+            tables = {
+                row[0]
+                for row in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type = 'table'"
+                )
+            }
+            if not TABLES.issubset(tables):
+                logger.error("SQLite database is missing tables: %s", TABLES - tables)
+                return False
+            for table in sorted(TABLES):
+                count = connection.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]
+                if count == 0:
+                    logger.error("SQLite table is empty: %s", table)
+                    return False
+    except sqlite3.Error as error:
+        logger.error("Could not validate SQLite database: %s", error)
+        return False
+    return True
+
+
+def main() -> int:
     if not execute_pipeline():
-        print("[FAILURE] Pipeline execution failed. Aborting tests.")
-        return
+        return 1
+    if not validate_output_files():
+        return 1
+    if not validate_csv_files() or not validate_database():
+        return 1
+    logger.info("All ETL output checks passed.")
+    return 0
 
-    # Step 2: Validate output files
-    if not check_file_availability(OUTPUT_FILES):
-        print("[FAILURE] File validation failed. Aborting tests.")
-        return
-
-    # Step 3: Check for missing data in files
-    csv_files = [file for file in OUTPUT_FILES if file.endswith('.csv')]
-    if not inspect_missing_values(csv_files):
-        print("[FAILURE] Missing data check failed.")
-        return
-
-    print("[SUCCESS] All tests passed successfully!")
 
 if __name__ == "__main__":
-    run_tests()
+    raise SystemExit(main())

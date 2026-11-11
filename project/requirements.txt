@@ -1,3 +1,2 @@
-pandas
-sqlalchemy
-kaggle
+pandas>=2.0,<3.0
+requests>=2.31,<3.0
